@@ -4,8 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// CONSTANTS
+global.API_REQUEST_URL = 'https://api.daft.ie/vD8/json/';
+global.GET_RENTALS = 'search_rental';
+global.API_KEY = 'edc5958166db14ec6e4ef9c0cfbac7017210c550';
+
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var fetchProperties = require('./routes/fetchProperties');
 
 var app = express();
 
@@ -20,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/fetchProperties', fetchProperties);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
